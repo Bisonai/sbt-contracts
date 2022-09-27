@@ -1,6 +1,6 @@
 # SBT contracts
 
-Create NFT (https://wizard.openzeppelin.com/) and deploy to Baobab.
+Create SBT and deploy to Baobab.
 
 ## Prerequisites
 
