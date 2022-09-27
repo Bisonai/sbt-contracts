@@ -1,4 +1,4 @@
-# NFT playground
+# SBT contracts
 
 Create NFT (https://wizard.openzeppelin.com/) and deploy to Baobab.
 
@@ -35,7 +35,3 @@ npx hardhat run --network localhost ./scripts/deploy.ts
 ```shell
 npx hardhat run --network baobab ./scripts/deploy.ts
 ```
-
-## NFT
-
-`MyNFT` is deployed to Baobab at address [`0xfb04B3Dbd08134d81b8e024ed2392997d6ec6a2D`](https://baobab.scope.klaytn.com/account/0xfb04B3Dbd08134d81b8e024ed2392997d6ec6a2D).
