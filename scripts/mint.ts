@@ -1,12 +1,12 @@
 import { ethers } from "hardhat";
 
 async function main() {
-    const nft = await ethers.getContractAt("MyNFT", "0xfb04B3Dbd08134d81b8e024ed2392997d6ec6a2D");
+    const sbt = await ethers.getContractAt("SBT", "0x5FbDB2315678afecb367f032d93F642f64180aa3");
 
     const [owner] = await ethers.getSigners();
-    for (let i = 0; i < 1_000; ++i) {
+    for (let i = 0; i < 1; ++i) {
         console.log("Minting ", i)
-        const tx = await nft.safeMint(owner.address);
+        const tx = await sbt.safeMint(owner.address);
         await tx.wait();
     }
 }

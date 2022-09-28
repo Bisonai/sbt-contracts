@@ -1,17 +1,14 @@
 import { ethers } from "hardhat";
 
 async function main() {
-    const MyNFT = await ethers.getContractFactory("MyNFT");
-    const nft = await MyNFT.deploy();
+    const MySBT = await ethers.getContractFactory("SBT");
+    const sbtName = "SBT";
+    const sbtSymbol = "SBT";
+    const baseURI = "ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/";
+    const sbt = await MySBT.deploy(sbtName, sbtSymbol, baseURI);
 
-    await nft.deployed();
-
-    const [owner] = await ethers.getSigners();
-    for (let i = 0; i < 1_000; ++i) {
-        nft.safeMint(owner.address);
-    }
-
-    console.log("MyNFT deployed to:", nft.address);
+    await sbt.deployed();
+    console.log("MySBT deployed to:", sbt.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
