@@ -1,14 +1,13 @@
 {
   "name": "@bisonai/sbt-contracts",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "SBT contract deployable to Klaytn",
+  "files": ["typechain-types"],
+  "main": "typechain-types/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Bisonai",
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
     "@ethersproject/providers": "^5.4.7",
@@ -35,5 +34,8 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.2"
+  },
+  "publishConfig": {
+    "registry": "https://bisonai-831311642255.d.codeartifact.us-west-2.amazonaws.com/npm/bisonai/"
   }
 }
