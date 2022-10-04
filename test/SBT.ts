@@ -6,6 +6,7 @@ import { PromiseOrValue } from "../typechain-types/common";
 import { SBT } from "../typechain-types";
 
 let sbt: SBT
+const tokenID = 0;
 const baseURI = "ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/";
 let owner: { address: PromiseOrValue<string>; }, account1: { address: PromiseOrValue<string>; };
 describe("MySBT", async function() {
@@ -15,60 +16,58 @@ describe("MySBT", async function() {
         const sbtSymbol = "SBT";
         sbt = await MySBT.deploy(sbtName, sbtSymbol, baseURI);
         [owner, account1] = await ethers.getSigners();
+        await sbt.safeMint(owner.address, tokenID);
     })
     
     it("#1 Should mint single MyNFT", async function() {         
-        await sbt.safeMint(owner.address);
-
         expect(await sbt.balanceOf(owner.address)).to.equal(1);
         expect(await sbt.tokenURI(0)).to.equal(baseURI+"0");
     });
 
-    it("#2 Locked status should be True", async function() {
-        await sbt.safeMint(owner.address);
+    it("#2 Shoud fail minting twice with same tokenID", async function() {   
+        await expect(
+            sbt.safeMint(owner.address, tokenID)
+        ).to.be.revertedWith("Already minted with same tokenID");
+    });
 
+    it("#3 Locked status should be True", async function() {
         const lockStatus = await sbt.locked(0)
         expect(lockStatus == true);
     });
 
-    it("#3 transferFrom should revert", async function() {
-        await sbt.safeMint(owner.address);
-
+    it("#4 transferFrom should revert", async function() {
         await expect(
-            sbt.transferFrom(owner.address, account1.address, 0)
-            ).to.be.reverted
+            sbt.transferFrom(owner.address, account1.address, tokenID)
+        ).to.be.reverted
     });
 
-    it("#4 safeTransferFrom(address,address,uint256) should revert", async function() {
-        await sbt.safeMint(owner.address);
-
+    it("#5 safeTransferFrom(address,address,uint256) should revert", async function() {
         await expect(
-            sbt["safeTransferFrom(address,address,uint256)"](owner.address, account1.address, 0)
-            ).to.be.reverted
+            sbt["safeTransferFrom(address,address,uint256)"](owner.address, account1.address, tokenID)
+        ).to.be.reverted
     });
     
-    it("#5 safeTransferFrom(address,address,uint256,bytes) should revert", async function() {
-        await sbt.safeMint(owner.address);
-
+    it("#6 safeTransferFrom(address,address,uint256,bytes) should revert", async function() {
         await expect(
-            sbt["safeTransferFrom(address,address,uint256,bytes)"](owner.address, account1.address, 0, [])
-            ).to.be.reverted
+            sbt["safeTransferFrom(address,address,uint256,bytes)"](owner.address, account1.address, tokenID, [])
+        ).to.be.reverted
     });
 
     // To aid recognition that an EIP-721 token implements "soulbinding" via this EIP upon calling EIP-721's 
     // function supportsInterface(bytes4 interfaceID) must return true.
-    it("#6 Check Recognation of Soulbinding", async function() {
+    it("#7 Check Recognation of Soulbinding", async function() {
         const interfaceId = "0xb45a3c0e";
         const checkStatus = await sbt.supportsInterface(interfaceId)
         expect(checkStatus == true)
     });
 
-    it("#7 Check updateBaseURI", async function() {   
-        await sbt.safeMint(owner.address);
-        const newBaseURI = "ipfs.io/ipfs/QmWXJXRdExse2YHRY21Wvh4pjRxNRQcWVhcKw4DLVnqGqs"
+    it("#8 Check updateBaseURI", async function() {   
+        const newBaseURI = "ipfs.io/ipfs/QmWXJXRdExse2YHRY21Wvh4pjRxNRQcWVhcKw4DLVnqGqs/"
         await sbt.updateBaseURI(newBaseURI)
 
-        expect(await sbt.tokenURI(0)).to.equal(newBaseURI+"0");
+        expect(
+            await sbt.tokenURI(tokenID))
+        .to.equal(newBaseURI+tokenID.toString());
     });
 
 });
