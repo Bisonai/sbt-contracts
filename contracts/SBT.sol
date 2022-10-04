@@ -19,6 +19,10 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         return baseURI;
     }
 
+    function updateBaseURI(string memory baseURI_) public onlyOwner {
+        baseURI = baseURI_;
+    }
+
     // Mapping from token ID to locked status
     mapping(uint256 => bool) _locked;
 
