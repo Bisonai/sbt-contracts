@@ -4,11 +4,8 @@ pragma solidity ^0.8.16;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract SBT is ERC721, ERC721Enumerable, Ownable {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIdCounter;
     string private baseURI;
 
     constructor(string memory name_, string memory symbol_, string memory baseURI_) ERC721(name_, symbol_) {
@@ -46,10 +43,8 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         return _locked[tokenId];
     }
 
-    function safeMint(address to) public onlyOwner {
-        uint256 tokenId = _tokenIdCounter.current();
-        _tokenIdCounter.increment();
-
+    function safeMint(address to, uint256 tokenId) public onlyOwner {
+        require(_locked[tokenId] != true, "Already minted with same tokenID");
         _locked[tokenId] = true;
         emit Locked(tokenId);
 
