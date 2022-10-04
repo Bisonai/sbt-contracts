@@ -62,4 +62,13 @@ describe("MySBT", async function() {
         const checkStatus = await sbt.supportsInterface(interfaceId)
         expect(checkStatus == true)
     });
+
+    it("#7 Check updateBaseURI", async function() {   
+        await sbt.safeMint(owner.address);
+        const newBaseURI = "ipfs.io/ipfs/QmWXJXRdExse2YHRY21Wvh4pjRxNRQcWVhcKw4DLVnqGqs"
+        await sbt.updateBaseURI(newBaseURI)
+
+        expect(await sbt.tokenURI(0)).to.equal(newBaseURI+"0");
+    });
+
 });
