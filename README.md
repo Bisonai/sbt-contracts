@@ -36,3 +36,10 @@ npx hardhat run --network baobab ./scripts/deploy.ts
 ```shell
 npx hardhat test
 ```
+
+## Package
+
+```shell
+npx hardhat compile
+yarn build
+```
