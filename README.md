@@ -10,13 +10,14 @@ Generate mnemonic.
 npx mnemonics
 ```
 
-Create `.env` and fill in generated mnemonic to `MNEMONIC` environment variable.
+Create `.env` from `.env.example`
 
 
 ```shell
 cp .env.example .env
 ```
 
+and fill in generated mnemonic to `MNEMONIC` environment variable.
 
 ## Test
 
