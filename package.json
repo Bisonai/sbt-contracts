@@ -1,6 +1,6 @@
 {
   "name": "@bisonai/sbt-contracts",
-  "version": "0.2.0",
+  "version": "0.2.0-demo",
   "description": "SBT contract deployable to Klaytn",
   "files": ["typechain-types"],
   "main": "dist/typechain-types/index.js",
