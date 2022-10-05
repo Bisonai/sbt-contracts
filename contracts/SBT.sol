@@ -30,7 +30,7 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
     /// @notice Emitted when the locking status is changed to unlocked.
     /// @notice currently SBT Contract does not emit Unlocked event
     /// @dev If a token is minted and the status is unlocked, this event should be emitted.
-    /// @param tokenId The identifier for a token.  
+    /// @param tokenId The identifier for a token.
     event Unlocked(uint256 tokenId);
 
     /// @notice Returns the locking status of an Soulbound Token
@@ -43,6 +43,7 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
     }
 
     function safeMint(address to) public onlyOwner {
+        require(balanceOf(to) == 0, "You can't have two SBT");
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
 
@@ -61,7 +62,7 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         address from,
         address to,
         uint256 tokenId
-    ) 
+    )
         public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
         super.safeTransferFrom(
             from,
@@ -75,7 +76,7 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         address to,
         uint256 tokenId,
         bytes memory data
-    ) 
+    )
         public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
         super.safeTransferFrom(
             from,
@@ -89,7 +90,7 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         address from,
         address to,
         uint256 tokenId
-    )  
+    )
         public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
         super.safeTransferFrom(
             from,
