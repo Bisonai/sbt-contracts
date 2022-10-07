@@ -45,7 +45,6 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
 
     function safeMint(address to, uint256 tokenId) public onlyOwner {
         require(balanceOf(to) == 0, "You can't have two SBT");
-        require(_owners[tokenId] == address(0), "SBT was already minted");
         require(_locked[tokenId] != true, "Already minted with same tokenID");
 
         _locked[tokenId] = true;
