@@ -25,7 +25,7 @@ describe("MySBT", async function() {
         expect(await sbt.tokenURI(0)).to.equal(baseURI+"0");
     });
 
-    it("#2 Shoud fail minting twice with same tokenID", async function() {
+    it("#2 Shoud fail minting twice with same address", async function() {
         await expect(
             sbt.safeMint(owner.address, tokenID1)
         ).to.be.revertedWith("You can't have two SBT");
@@ -42,7 +42,7 @@ describe("MySBT", async function() {
         expect(lockStatus == true);
     });
 
-    it("#5 Locked status should be True", async function() {
+    it("#5 Locked status should be reverted not minted tokenID", async function() {
         await expect(
             sbt.locked(tokenID1)
         ).to.be.reverted
