@@ -13,7 +13,6 @@ const commonConfig = {
     }
 }
 
-
 const config: HardhatUserConfig = {
     solidity: "0.8.16",
     networks: {
