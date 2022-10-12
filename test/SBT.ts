@@ -79,9 +79,7 @@ describe("MySBT", async function() {
         const newBaseURI = "ipfs.io/ipfs/QmWXJXRdExse2YHRY21Wvh4pjRxNRQcWVhcKw4DLVnqGqs/"
         await sbt.updateBaseURI(newBaseURI)
 
-        expect(
-            await sbt.tokenURI(tokenID))
-        .to.equal(newBaseURI+tokenID.toString());
+        expect(await sbt.tokenURI(tokenID)).to.equal(newBaseURI+tokenID.toString());
     });
 
 });
