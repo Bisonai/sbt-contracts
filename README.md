@@ -19,6 +19,12 @@ cp .env.example .env
 
 and fill in generated mnemonic to `MNEMONIC` environment variable.
 
+## Run test
+
+```shell
+npx hardhat test
+```
+
 ## Deploy locally
 
 ```shell
