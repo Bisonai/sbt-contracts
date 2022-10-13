@@ -1,8 +1,10 @@
 {
   "name": "@bisonai/sbt-contracts",
-  "version": "0.2.0-demo2",
+  "version": "0.3.0",
   "description": "SBT contract deployable to Klaytn",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "dist/typechain-types/index.js",
   "license": "UNLICENSED",
   "scripts": {
