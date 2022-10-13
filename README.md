@@ -12,7 +12,6 @@ npx mnemonics
 
 Create `.env` from `.env.example`
 
-
 ```shell
 cp .env.example .env
 ```
@@ -42,4 +41,5 @@ npx hardhat test
 ```shell
 npx hardhat compile
 yarn build
+yarn pub
 ```
