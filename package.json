@@ -9,7 +9,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "pub": "cd dist && yarn publish"
   },
   "author": "Bisonai",
   "devDependencies": {
