@@ -4,6 +4,7 @@ pragma solidity ^0.8.16;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./interfaces/IERC5192.sol";
 
 contract SBT is ERC721, ERC721Enumerable, Ownable {
     string private baseURI;
@@ -106,12 +107,14 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         super._beforeTokenTransfer(from, to, tokenId);
     }
 
-    function supportsInterface(bytes4 interfaceId)
+    function supportsInterface(bytes4 _interfaceId)
         public
         view
         override(ERC721, ERC721Enumerable)
         returns (bool)
     {
-        return super.supportsInterface(interfaceId);
+        return _interfaceId == type(IERC5192).interfaceId ||
+            super.supportsInterface(_interfaceId);
     }
+
 }
