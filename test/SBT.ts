@@ -9,14 +9,16 @@ let sbt: SBT
 const tokenID = 0
 const tokenID1 = 1
 const baseURI = 'ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/'
-let owner: { address: PromiseOrValue<string> }, account1: { address: PromiseOrValue<string> }
+let owner: { address: PromiseOrValue<string> }
+let account1: { address: PromiseOrValue<string> }
+
 describe('MySBT', async function () {
   beforeEach(async () => {
     const MySBT = await ethers.getContractFactory('SBT')
     const sbtName = 'SBT'
     const sbtSymbol = 'SBT'
     sbt = await MySBT.deploy(sbtName, sbtSymbol, baseURI)
-    [owner, account1] = await ethers.getSigners()
+    ;[owner, account1] = await ethers.getSigners()
     await sbt.safeMint(owner.address, tokenID)
   })
 
