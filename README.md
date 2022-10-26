@@ -1,44 +1,51 @@
-# SBT contracts
+# @bisonai/sbt-contracts
 
-Create SBT and deploy to Baobab.
+This repository defines smart contracts, deployment and test scripts for Soulbound token (SBT).
 
 ## Prerequisites
 
-Generate mnemonic.
+1. Generate mnemonic if you do not have any.
 
 ```shell
 npx mnemonics
 ```
 
-Create `.env` from `.env.example`
+2. Create `.env` from `.env.example`.
 
 ```shell
 cp .env.example .env
 ```
 
-and fill in generated mnemonic to `MNEMONIC` environment variable.
+3. Fill in generated mnemonic to `MNEMONIC` environment variable.
 
-## Deploy locally
+## Compilation
 
-```shell
-npx hardhat run --network localhost ./scripts/deploy.ts
+```
+npx hardhat compile
 ```
 
-## Deploy to Baobab
+## Deployment
+
+`hardhat.config.ts` defines supported networks where SBT can be deployed.
+Currently, you can deploy to your `localhost`, `baobab` or `cypress`.
+To deploy call command below and replace `$NETWORK` with any of the supported networks.
 
 ```shell
-npx hardhat run --network baobab ./scripts/deploy.ts
+npx hardhat run --network $NETWORK ./scripts/deploy.ts
 ```
 
 ## Run test
+
+Before running test, make sure you compile your smart contracts.
 
 ```shell
 npx hardhat test
 ```
 
-## Package
+## Publishing
 
 ```shell
+npx hardhat clean
 npx hardhat compile
 yarn build
 yarn pub
