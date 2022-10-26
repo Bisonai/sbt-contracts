@@ -56,5 +56,4 @@ yarn pub
 - [ ] setup public registry
 - [ ] deploy to public registry
 - [ ] remove information about private registry (.npmrc, package.json)
-- [ ] simplify msg in require
 - [ ] update baseURI for testing

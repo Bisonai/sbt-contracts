@@ -29,15 +29,11 @@ describe('MySBT', async function () {
   })
 
   it('#2 Shoud fail minting twice with same address', async function () {
-    await expect(sbt.safeMint(ownerAccount.address, tokenID1)).to.be.revertedWith(
-      "You can't have two SBT"
-    )
+    await expect(sbt.safeMint(ownerAccount.address, tokenID1)).to.be.revertedWith('MNT01')
   })
 
   it('#3 Shoud fail minting twice with same tokenID', async function () {
-    await expect(sbt.safeMint(otherAccount.address, tokenID0)).to.be.revertedWith(
-      'Already minted with same tokenID'
-    )
+    await expect(sbt.safeMint(otherAccount.address, tokenID0)).to.be.revertedWith('MNT02')
   })
 
   it('#4 Locked status should be True', async function () {
