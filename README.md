@@ -50,3 +50,11 @@ npx hardhat compile
 yarn build
 yarn pub
 ```
+
+## Before open sourcing
+
+- [ ] setup public registry
+- [ ] deploy to public registry
+- [ ] remove information about private registry (.npmrc, package.json)
+- [ ] simplify msg in require
+- [ ] update baseURI for testing
