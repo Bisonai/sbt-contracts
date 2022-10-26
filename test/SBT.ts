@@ -5,12 +5,13 @@ import { ethers } from 'hardhat'
 import { PromiseOrValue } from '../typechain-types/common'
 import { SBT } from '../typechain-types'
 
-let sbt: SBT
-const tokenID = 0
+const tokenID0 = 0
 const tokenID1 = 1
 const baseURI = 'ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/'
-let owner: { address: PromiseOrValue<string> }
-let account1: { address: PromiseOrValue<string> }
+
+let sbt: SBT
+let ownerAccount: { address: PromiseOrValue<string> }
+let otherAccount: { address: PromiseOrValue<string> }
 
 describe('MySBT', async function () {
   beforeEach(async () => {
@@ -18,27 +19,29 @@ describe('MySBT', async function () {
     const sbtName = 'SBT'
     const sbtSymbol = 'SBT'
     sbt = await MySBT.deploy(sbtName, sbtSymbol, baseURI)
-    ;[owner, account1] = await ethers.getSigners()
-    await sbt.safeMint(owner.address, tokenID)
+    ;[ownerAccount, otherAccount] = await ethers.getSigners()
+    await sbt.safeMint(ownerAccount.address, tokenID0)
   })
 
   it('#1 Should mint single MyNFT', async function () {
-    expect(await sbt.balanceOf(owner.address)).to.equal(1)
+    expect(await sbt.balanceOf(ownerAccount.address)).to.equal(1)
     expect(await sbt.tokenURI(0)).to.equal(baseURI + '0')
   })
 
   it('#2 Shoud fail minting twice with same address', async function () {
-    await expect(sbt.safeMint(owner.address, tokenID1)).to.be.revertedWith("You can't have two SBT")
+    await expect(sbt.safeMint(ownerAccount.address, tokenID1)).to.be.revertedWith(
+      "You can't have two SBT"
+    )
   })
 
   it('#3 Shoud fail minting twice with same tokenID', async function () {
-    await expect(sbt.safeMint(account1.address, tokenID)).to.be.revertedWith(
+    await expect(sbt.safeMint(otherAccount.address, tokenID0)).to.be.revertedWith(
       'Already minted with same tokenID'
     )
   })
 
   it('#4 Locked status should be True', async function () {
-    const lockStatus = await sbt.locked(tokenID)
+    const lockStatus = await sbt.locked(tokenID0)
     expect(lockStatus == true)
   })
 
@@ -47,21 +50,26 @@ describe('MySBT', async function () {
   })
 
   it('#6 transferFrom should revert', async function () {
-    await expect(sbt.transferFrom(owner.address, account1.address, tokenID)).to.be.reverted
+    await expect(sbt.transferFrom(ownerAccount.address, otherAccount.address, tokenID0)).to.be
+      .reverted
   })
 
   it('#7 safeTransferFrom(address,address,uint256) should revert', async function () {
     await expect(
-      sbt['safeTransferFrom(address,address,uint256)'](owner.address, account1.address, tokenID)
+      sbt['safeTransferFrom(address,address,uint256)'](
+        ownerAccount.address,
+        otherAccount.address,
+        tokenID0
+      )
     ).to.be.reverted
   })
 
   it('#8 safeTransferFrom(address,address,uint256,bytes) should revert', async function () {
     await expect(
       sbt['safeTransferFrom(address,address,uint256,bytes)'](
-        owner.address,
-        account1.address,
-        tokenID,
+        ownerAccount.address,
+        otherAccount.address,
+        tokenID0,
         []
       )
     ).to.be.reverted
@@ -80,6 +88,6 @@ describe('MySBT', async function () {
     const newBaseURI = 'ipfs.io/ipfs/QmWXJXRdExse2YHRY21Wvh4pjRxNRQcWVhcKw4DLVnqGqs/'
     await sbt.updateBaseURI(newBaseURI)
 
-    expect(await sbt.tokenURI(tokenID)).to.equal(newBaseURI + tokenID.toString())
+    expect(await sbt.tokenURI(tokenID0)).to.equal(newBaseURI + tokenID0.toString())
   })
 })
