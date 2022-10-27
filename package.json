@@ -1,12 +1,12 @@
 {
   "name": "@bisonai/sbt-contracts",
   "version": "0.4.0",
-  "description": "SBT contract deployable to Klaytn",
+  "description": "Solidity smart contracts, deployment and test scripts for Soulbound token (SBT)",
   "files": [
     "dist"
   ],
   "main": "dist/typechain-types/index.js",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
