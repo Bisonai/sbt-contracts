@@ -26,22 +26,17 @@ npx hardhat compile
 
 ## Predefined networks
 
-`hardhat.config.ts` defines supported networks where SBT can be deployed.
-Currently, you can deploy to your `localhost`, `baobab` or `cypress`.
-If you want to deploy to other network, simply add connection information to `hardhat.config.ts`.
+`hardhat.config.ts` predefines several networks where SBT can be deployed.
+Currently, you can deploy your SBT to `localhost`, `baobab` or `cypress` networks.
+If you want to deploy to any other network, simply add connection information to `hardhat.config.ts`.
 
-## Run test
 
-Before running test, make sure you compile your smart contracts.
-
-```shell
-npx hardhat test
-```
 
 ## Deploy SBT
 
-To deploy your SBT call `npx hardhat deploy` command and set options `--base-uri`, `--name`, `--symbol`.
-If you want to deploy to specific network you can defined it using `--network` option.
+To deploy your SBT call `npx hardhat deploy` command and set options `--base-uri`, `--name` and `--symbol`.
+If you want to deploy to specific network you can define it using `--network` option.
+To find more information about networks, go to [Predefined networks](#predefined-networks) section.
 
 ```
 Hardhat version 2.10.1
@@ -69,7 +64,7 @@ npx hardhat deploy \
     --network localhost
 ```
 
-Output
+### Output
 
 ```
 SBT was deployed to localhost network and can be interacted with at address 0xd65C849d9ADf21bc83cD8dEC377C4f0181dEcE6B
@@ -77,9 +72,9 @@ SBT was deployed to localhost network and can be interacted with at address 0xd6
 
 ## Mint SBT
 
-When minting SBT, specify address of deployed SBT as `--address`, address that will receive SBT token as `--to` and ID of token as `--token-id`.
+When minting SBT, specify address of deployed SBT with `--address` option, address that will receive SBT token with `--to` option and ID of token with `--token-id` option.
 Do not forget that single account can hold only single SBT token and that ID of every token is unique and cannot be reused.
-After SBT is minted to specified account, it cannot be transferred to any other token.
+After SBT token is minted to a specified account, it cannot be transferred to any other one.
 
 ```
 Hardhat version 2.10.1
@@ -107,10 +102,18 @@ npx hardhat mint \
     --network localhost
 ```
 
-Output
+### Output
 
 ```
 SBT with tokenId 123 was minted for address 0xeaeF3D4964F40924D3082CFcB6F7E1d9Fe5D299B
+```
+
+## Run test
+
+Before running test, make sure you compile your smart contracts.
+
+```shell
+npx hardhat test
 ```
 
 ## Publishing
