@@ -12,13 +12,13 @@ yarn install
 
 1. Generate mnemonic if you do not have any.
 
-```shell
+```
 npx mnemonics
 ```
 
 2. Create `.env` from `.env.example`.
 
-```shell
+```
 cp .env.example .env
 ```
 
@@ -62,7 +62,7 @@ For global options help run: hardhat help
 
 ### Example of deploying SBT in localhost network
 
-```shell
+```
 yarn deploy \
     --name MySBT \
     --symbol MSBT \
@@ -118,13 +118,13 @@ SBT with tokenId 123 was minted for address 0xeaeF3D4964F40924D3082CFcB6F7E1d9Fe
 
 Before running test, make sure you compile your smart contracts.
 
-```shell
+```
 yarn test
 ```
 
 ## Publish to registry
 
-```shell
+```
 yarn clean
 yarn compile
 yarn build
