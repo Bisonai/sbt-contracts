@@ -1,6 +1,12 @@
 # @bisonai/sbt-contracts
 
-This repository defines smart contracts, deployment and test scripts for Soulbound token (SBT).
+This repository defines Solidity smart contracts, deployment and test scripts for Soulbound token (SBT).
+
+## Installation
+
+```
+yarn install
+```
 
 ## Prerequisites
 
@@ -116,7 +122,7 @@ Before running test, make sure you compile your smart contracts.
 npx hardhat test
 ```
 
-## Publishing
+## Publish to registry
 
 ```shell
 npx hardhat clean
@@ -124,6 +130,10 @@ npx hardhat compile
 yarn build
 yarn pub
 ```
+
+## License
+
+[Apache License 2.0](LICENSE)
 
 ## Before open sourcing
 
