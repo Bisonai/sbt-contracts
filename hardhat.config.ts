@@ -47,4 +47,29 @@ task('balance', "Prints an account's balance")
     console.log(hre.web3.utils.fromWei(balance, 'ether'), 'KLAY')
   })
 
+task('deploy', 'Deploy SBT')
+  .addParam('name', 'SBT name')
+  .addParam('symbol', 'SBT symbol')
+  .addParam('baseUri', 'URI (must end with /) that will be used as prefix when returning tokenURI')
+  .setAction(async (args, hre) => {
+    const sbtContract = await hre.ethers.getContractFactory('SBT')
+    const sbt = await sbtContract.deploy(args.name, args.symbol, args.baseUri)
+    await sbt.deployed()
+    console.log(
+      `SBT was deployed to ${hre.network.name} network and can be interacted with at address ${sbt.address}`
+    )
+  })
+
+task('mint', 'Mint SBT')
+  .addParam('address', 'Address of deployed SBT')
+  .addParam('to', 'Address receiving SBT token')
+  .addParam('tokenId', 'ID of SBT token that is being minted')
+  .setAction(async (args, hre) => {
+    const sbt = await hre.ethers.getContractAt('SBT', args.address)
+    const [owner] = await hre.ethers.getSigners()
+    const tx = await (await sbt.safeMint(args.to, args.tokenId)).wait()
+    console.log(tx)
+    console.log(`SBT with tokenId ${args.tokenId} was minted for address ${args.to}`)
+  })
+
 export default config
