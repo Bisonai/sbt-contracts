@@ -43,8 +43,5 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.2"
-  },
-  "publishConfig": {
-    "registry": "https://bisonai-831311642255.d.codeartifact.us-west-2.amazonaws.com/npm/bisonai/"
   }
 }
