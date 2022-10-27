@@ -7,23 +7,23 @@ import { SBT } from '../typechain-types'
 
 const tokenID0 = 0
 const tokenID1 = 1
-const baseURI = 'ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/'
+const baseURI = 'http://localhost/'
 
 let sbt: SBT
 let ownerAccount: { address: PromiseOrValue<string> }
 let otherAccount: { address: PromiseOrValue<string> }
 
-describe('MySBT', async function () {
+describe('SBT', async function () {
   beforeEach(async () => {
-    const MySBT = await ethers.getContractFactory('SBT')
+    const sbtContract = await ethers.getContractFactory('SBT')
     const sbtName = 'SBT'
     const sbtSymbol = 'SBT'
-    sbt = await MySBT.deploy(sbtName, sbtSymbol, baseURI)
+    sbt = await sbtContract.deploy(sbtName, sbtSymbol, baseURI)
     ;[ownerAccount, otherAccount] = await ethers.getSigners()
     await sbt.safeMint(ownerAccount.address, tokenID0)
   })
 
-  it('#1 Should mint single MyNFT', async function () {
+  it('#1 Should mint single SBT', async function () {
     expect(await sbt.balanceOf(ownerAccount.address)).to.equal(1)
     expect(await sbt.tokenURI(0)).to.equal(baseURI + '0')
   })
@@ -81,7 +81,7 @@ describe('MySBT', async function () {
   })
 
   it('#10 Check updateBaseURI', async function () {
-    const newBaseURI = 'ipfs.io/ipfs/QmWXJXRdExse2YHRY21Wvh4pjRxNRQcWVhcKw4DLVnqGqs/'
+    const newBaseURI = 'http://localhost/sbt/'
     await sbt.updateBaseURI(newBaseURI)
 
     expect(await sbt.tokenURI(tokenID0)).to.equal(newBaseURI + tokenID0.toString())
