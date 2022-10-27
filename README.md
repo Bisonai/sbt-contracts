@@ -27,7 +27,7 @@ cp .env.example .env
 ## Compilation
 
 ```
-npx hardhat compile
+yarn compile
 ```
 
 ## Predefined networks
@@ -40,7 +40,7 @@ If you want to deploy to any other network, simply add connection information to
 
 ## Deploy SBT
 
-To deploy your SBT call `npx hardhat deploy` command and set options `--base-uri`, `--name` and `--symbol`.
+To deploy your SBT call `yarn deploy` command and set options `--base-uri`, `--name` and `--symbol`.
 If you want to deploy to specific network you can define it using `--network` option.
 To find more information about networks, go to [Predefined networks](#predefined-networks) section.
 
@@ -63,7 +63,7 @@ For global options help run: hardhat help
 ### Example of deploying SBT in localhost network
 
 ```shell
-npx hardhat deploy \
+yarn deploy \
     --name MySBT \
     --symbol MSBT \
     --base-uri "http://localhost/" \
@@ -101,7 +101,7 @@ For global options help run: hardhat help
 ### Example of minting SBT in localhost network
 
 ```
-npx hardhat mint \
+yarn mint \
     --address 0xd65C849d9ADf21bc83cD8dEC377C4f0181dEcE6B \
     --to 0xeaeF3D4964F40924D3082CFcB6F7E1d9Fe5D299B \
     --token-id 123  \
@@ -119,14 +119,14 @@ SBT with tokenId 123 was minted for address 0xeaeF3D4964F40924D3082CFcB6F7E1d9Fe
 Before running test, make sure you compile your smart contracts.
 
 ```shell
-npx hardhat test
+yarn test
 ```
 
 ## Publish to registry
 
 ```shell
-npx hardhat clean
-npx hardhat compile
+yarn clean
+yarn compile
 yarn build
 yarn pub
 ```
