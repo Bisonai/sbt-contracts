@@ -8,7 +8,11 @@
   "main": "dist/typechain-types/index.js",
   "license": "Apache-2.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "npx hardhat clean",
+    "compile": "npx hardhat compile",
+    "test": "yarn compile && npx hardhat test",
+    "deploy": "npx hardhat deploy",
+    "mint": "npx hardhat mint",
     "build": "tsc",
     "pub": "yarn publish"
   },
