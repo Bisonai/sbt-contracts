@@ -139,4 +139,3 @@ yarn pub
 
 - [ ] setup public registry
 - [ ] deploy to public registry
-- [ ] remove information about private registry (.npmrc, package.json)
