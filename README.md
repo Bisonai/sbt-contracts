@@ -1,6 +1,6 @@
 # @bisonai/sbt-contracts
 
-This repository defines Solidity smart contracts, deployment and test scripts for Soulbound token (SBT).
+This repository defines Solidity smart contracts, deployment, and test scripts for Soulbound token (SBT). The implementation follows [EIP-5192: Minimal Soulbound NFT](https://eips.ethereum.org/EIPS/eip-5192).
 
 ## Installation
 
