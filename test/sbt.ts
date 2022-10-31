@@ -74,7 +74,7 @@ describe('SBT', async function () {
   // To aid recognition that an EIP-721 token implements "soulbinding" via this EIP upon calling EIP-721's
   // function supportsInterface(bytes4 interfaceID) must return true.
   // TODO To be sure interfaceID working right
-  it('#9 Check Recognation of Soulbinding', async function () {
+  it('#9 Check recognition of Soulbinding', async function () {
     const interfaceId = '0xb45a3c0e'
     const checkStatus = await sbt.supportsInterface(interfaceId)
     expect(checkStatus == true)
