@@ -6,6 +6,8 @@
     "dist"
   ],
   "main": "dist/typechain-types/index.js",
+  "author": "Bisonai",
+  "homepage": "https://github.com/bisonai/sbt-contracts#readme",
   "license": "Apache-2.0",
   "scripts": {
     "clean": "npx hardhat clean",
@@ -16,8 +18,6 @@
     "build": "tsc",
     "pub": "yarn publish"
   },
-  "author": "Bisonai",
-  "homepage": "https://github.com/bisonai/sbt-contracts#readme",
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
     "@ethersproject/providers": "^5.4.7",
