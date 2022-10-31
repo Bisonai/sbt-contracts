@@ -134,8 +134,3 @@ yarn pub
 ## License
 
 [Apache License 2.0](LICENSE)
-
-## Before open sourcing
-
-- [ ] setup public registry
-- [ ] deploy to public registry
