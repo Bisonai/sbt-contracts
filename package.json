@@ -16,7 +16,7 @@
     "deploy": "npx hardhat deploy",
     "mint": "npx hardhat mint",
     "build": "tsc",
-    "pub": "yarn publish"
+    "pub": "yarn publish --access public"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
