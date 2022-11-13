@@ -79,11 +79,4 @@ describe('SBT', async function () {
     const checkStatus = await sbt.supportsInterface(interfaceId)
     expect(checkStatus == true)
   })
-
-  it('#10 Check updateBaseURI', async function () {
-    const newBaseURI = 'http://localhost/sbt/'
-    await sbt.updateBaseURI(newBaseURI)
-
-    expect(await sbt.tokenURI(tokenID0)).to.equal(newBaseURI + tokenID0.toString())
-  })
 })
