@@ -36,8 +36,6 @@ yarn compile
 Currently, you can deploy your SBT to `localhost`, `baobab` or `cypress` networks.
 If you want to deploy to any other network, simply add connection information to `hardhat.config.ts`.
 
-
-
 ## Deploy SBT
 
 To deploy your SBT call `yarn deploy` command and set options `--base-uri`, `--name` and `--symbol`.
