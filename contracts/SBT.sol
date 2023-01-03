@@ -9,7 +9,11 @@ import "./interfaces/IERC5192.sol";
 contract SBT is ERC721, ERC721Enumerable, Ownable {
     string private baseURI;
 
-    constructor(string memory name_, string memory symbol_, string memory baseURI_) ERC721(name_, symbol_) {
+    constructor(
+        string memory name_,
+        string memory symbol_,
+        string memory baseURI_
+    ) ERC721(name_, symbol_) {
         baseURI = baseURI_;
     }
 
@@ -50,6 +54,11 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         _safeMint(to, tokenId);
     }
 
+    function burn(uint256 tokenId) public {
+        require(msg.sender == ownerOf(tokenId), "BRN01");
+        _burn(tokenId);
+    }
+
     modifier IsTransferAllowed(uint256 tokenId) {
         require(!_locked[tokenId]);
         _;
@@ -59,13 +68,8 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         address from,
         address to,
         uint256 tokenId
-    )
-        public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
-        super.safeTransferFrom(
-            from,
-            to,
-            tokenId
-        );
+    ) public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
+        super.safeTransferFrom(from, to, tokenId);
     }
 
     function safeTransferFrom(
@@ -73,33 +77,23 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         address to,
         uint256 tokenId,
         bytes memory data
-    )
-        public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
-        super.safeTransferFrom(
-            from,
-            to,
-            tokenId,
-            data
-        );
+    ) public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
+        super.safeTransferFrom(from, to, tokenId, data);
     }
 
     function transferFrom(
         address from,
         address to,
         uint256 tokenId
-    )
-        public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
-        super.safeTransferFrom(
-            from,
-            to,
-            tokenId
-        );
+    ) public virtual override(IERC721, ERC721) IsTransferAllowed(tokenId) {
+        super.safeTransferFrom(from, to, tokenId);
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
-        internal
-        override(ERC721, ERC721Enumerable)
-    {
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId
+    ) internal override(ERC721, ERC721Enumerable) {
         super._beforeTokenTransfer(from, to, tokenId);
     }
 
@@ -109,8 +103,6 @@ contract SBT is ERC721, ERC721Enumerable, Ownable {
         override(ERC721, ERC721Enumerable)
         returns (bool)
     {
-        return _interfaceId == type(IERC5192).interfaceId ||
-            super.supportsInterface(_interfaceId);
+        return _interfaceId == type(IERC5192).interfaceId || super.supportsInterface(_interfaceId);
     }
-
 }
