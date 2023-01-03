@@ -54,12 +54,12 @@ describe('SBT', async function () {
   })
 
   it('#7 Locked status should be reverted not minted tokenID', async function () {
-    await expect(sbt.locked(tokenID1)).to.be.rejected
+    await expect(sbt.locked(tokenID1)).to.be.reverted
   })
 
   it('#8 transferFrom should revert', async function () {
     await expect(sbt.transferFrom(ownerAccount.address, otherAccount.address, tokenID0)).to.be
-      .rejected
+      .reverted
   })
 
   it('#9 safeTransferFrom(address,address,uint256) should revert', async function () {
@@ -69,7 +69,7 @@ describe('SBT', async function () {
         otherAccount.address,
         tokenID0
       )
-    ).to.be.rejected
+    ).to.be.reverted
   })
 
   it('#10 safeTransferFrom(address,address,uint256,bytes) should revert', async function () {
@@ -80,7 +80,7 @@ describe('SBT', async function () {
         tokenID0,
         []
       )
-    ).to.be.rejected
+    ).to.be.reverted
   })
 
   // To aid recognition that an EIP-721 token implements "soulbinding" via this EIP upon calling EIP-721's
